@@ -41,5 +41,24 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void patientDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
+            switch (e.ColumnIndex)
+            {
+                case 5:
+                    MessageBox.Show("edit row");
+                    break;
+                case 6:
+                    MessageBox.Show("delete row");
+                    break;
+            }
+        }
+
+        private void patientDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

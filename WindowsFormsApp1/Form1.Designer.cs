@@ -33,8 +33,12 @@
             System.Windows.Forms.Label nomLabel;
             System.Windows.Forms.Label prenomLabel;
             System.Windows.Forms.Label date_NaissanceLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.Label sexLabel1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.medicalDataSet = new WindowsFormsApp1.medicalDataSet();
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.patientTableAdapter = new WindowsFormsApp1.medicalDataSetTableAdapters.patientTableAdapter();
@@ -57,13 +61,16 @@
             this.prenomTextBox = new System.Windows.Forms.TextBox();
             this.date_NaissanceDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.patientDataGridView = new System.Windows.Forms.DataGridView();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.sexComboBox = new System.Windows.Forms.ComboBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.sexComboBox = new System.Windows.Forms.ComboBox();
+            this.update = new System.Windows.Forms.DataGridViewImageColumn();
+            this.remove = new System.Windows.Forms.DataGridViewImageColumn();
             iDLabel = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
             prenomLabel = new System.Windows.Forms.Label();
@@ -112,6 +119,15 @@
             date_NaissanceLabel.Size = new System.Drawing.Size(112, 17);
             date_NaissanceLabel.TabIndex = 9;
             date_NaissanceLabel.Text = "Date Naissance:";
+            // 
+            // sexLabel1
+            // 
+            sexLabel1.AutoSize = true;
+            sexLabel1.Location = new System.Drawing.Point(670, 84);
+            sexLabel1.Name = "sexLabel1";
+            sexLabel1.Size = new System.Drawing.Size(33, 17);
+            sexLabel1.TabIndex = 13;
+            sexLabel1.Text = "sex:";
             // 
             // medicalDataSet
             // 
@@ -293,21 +309,74 @@
             // 
             // patientDataGridView
             // 
+            this.patientDataGridView.AllowUserToAddRows = false;
             this.patientDataGridView.AutoGenerateColumns = false;
+            this.patientDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.patientDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.patientDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.patientDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.patientDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.update,
+            this.remove});
             this.patientDataGridView.DataSource = this.patientBindingSource;
-            this.patientDataGridView.Location = new System.Drawing.Point(0, 186);
+            this.patientDataGridView.EnableHeadersVisualStyles = false;
+            this.patientDataGridView.GridColor = System.Drawing.Color.Gray;
+            this.patientDataGridView.Location = new System.Drawing.Point(0, 179);
+            this.patientDataGridView.MultiSelect = false;
             this.patientDataGridView.Name = "patientDataGridView";
-            this.patientDataGridView.RowHeadersWidth = 51;
-            this.patientDataGridView.RowTemplate.Height = 24;
-            this.patientDataGridView.Size = new System.Drawing.Size(800, 348);
+            this.patientDataGridView.RowHeadersVisible = false;
+            this.patientDataGridView.RowHeadersWidth = 60;
+            this.patientDataGridView.RowTemplate.Height = 35;
+            this.patientDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.patientDataGridView.Size = new System.Drawing.Size(882, 348);
             this.patientDataGridView.TabIndex = 11;
+            this.patientDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patientDataGridView_CellContentClick);
+            this.patientDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.patientDataGridView_CellMouseClick);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(441, 125);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(98, 21);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // sexComboBox
+            // 
+            this.sexComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.patientBindingSource, "sex", true));
+            this.sexComboBox.FormattingEnabled = true;
+            this.sexComboBox.Location = new System.Drawing.Point(709, 81);
+            this.sexComboBox.Name = "sexComboBox";
+            this.sexComboBox.Size = new System.Drawing.Size(121, 24);
+            this.sexComboBox.TabIndex = 14;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::WindowsFormsApp1.Properties.Resources.Pencil3;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -320,19 +389,19 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Nom";
             this.dataGridViewTextBoxColumn2.HeaderText = "Nom";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Prenom";
             this.dataGridViewTextBoxColumn3.HeaderText = "Prenom";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 125;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -345,38 +414,41 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Date_Naissance";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Date_Naissance";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Date  Naissance";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 125;
             // 
-            // checkBox1
+            // update
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(441, 125);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 21);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.update.DefaultCellStyle = dataGridViewCellStyle2;
+            this.update.HeaderText = "";
+            this.update.Image = global::WindowsFormsApp1.Properties.Resources.Pencil3;
+            this.update.MinimumWidth = 6;
+            this.update.Name = "update";
+            this.update.ReadOnly = true;
+            this.update.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.update.Width = 125;
             // 
-            // sexLabel1
+            // remove
             // 
-            sexLabel1.AutoSize = true;
-            sexLabel1.Location = new System.Drawing.Point(670, 84);
-            sexLabel1.Name = "sexLabel1";
-            sexLabel1.Size = new System.Drawing.Size(33, 17);
-            sexLabel1.TabIndex = 13;
-            sexLabel1.Text = "sex:";
-            // 
-            // sexComboBox
-            // 
-            this.sexComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.patientBindingSource, "sex", true));
-            this.sexComboBox.FormattingEnabled = true;
-            this.sexComboBox.Location = new System.Drawing.Point(709, 81);
-            this.sexComboBox.Name = "sexComboBox";
-            this.sexComboBox.Size = new System.Drawing.Size(121, 24);
-            this.sexComboBox.TabIndex = 14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle3.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle3.NullValue")));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Tomato;
+            this.remove.DefaultCellStyle = dataGridViewCellStyle3;
+            this.remove.HeaderText = "";
+            this.remove.Image = global::WindowsFormsApp1.Properties.Resources.iconfinder_Erase_131842;
+            this.remove.MinimumWidth = 6;
+            this.remove.Name = "remove";
+            this.remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remove.Width = 125;
             // 
             // Form1
             // 
@@ -435,12 +507,15 @@
         private System.Windows.Forms.DateTimePicker date_NaissanceDateTimePicker;
         private System.Windows.Forms.DataGridView patientDataGridView;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox sexComboBox;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.ComboBox sexComboBox;
+        private System.Windows.Forms.DataGridViewImageColumn update;
+        private System.Windows.Forms.DataGridViewImageColumn remove;
     }
 }
 
